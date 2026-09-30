@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SOC 2 Vendor &amp; Subservice Organization Tracker</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="page-header">
+  <div class="wrap">
+    <h1>SOC 2 Vendor &amp; Subservice Organization Tracker</h1>
+    <p class="tagline">Track vendor risk reviews, SOC 2 reports, and privacy commitments (CC9.2, P6.4, P6.5).</p>
+    <p class="disclaimer"><strong>Readiness aid only.</strong> Not an audit, attestation, CPA opinion, or legal advice.</p>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section>
+    <h2>Dashboard</h2>
+    <div id="stats" class="stats"></div>
+    <h3>Needs attention: critical vendors without a current SOC 2 report</h3>
+    <div id="flagged"></div>
+  </section>
+
+  <section>
+    <h2>Vendor register</h2>
+    <div class="toolbar">
+      <button id="addBtn" class="primary">Add vendor</button>
+      <button id="exportCsv">Export CSV</button>
+      <button id="exportMd">Export Markdown summary</button>
+      <button id="resetBtn" class="muted-btn">Reset to examples</button>
+    </div>
+    <div class="table-scroll">
+      <table>
+        <thead>
+          <tr>
+            <th>Vendor</th>
+            <th>Criticality</th>
+            <th>SOC 2 report</th>
+            <th>DPA in place</th>
+            <th>Next review due</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="vendorRows"></tbody>
+      </table>
+    </div>
+    <p class="muted">Reviews are annual. "Mark reviewed" stamps today as the last review and sets the next review 12 months out. A SOC 2 report counts as current when it is dated within the last 12 months. Your register is stored only in this browser (localStorage).</p>
+  </section>
+
+  <section>
+    <h2>Why this matters for SOC 2</h2>
+    <div id="tscRefs"></div>
+  </section>
+
+</main>
+
+<div id="modal" class="modal">
+  <div class="modal-card">
+    <h2 id="formTitle">Add vendor</h2>
+    <label>Vendor name (required)
+      <input id="f_name" type="text" maxlength="120">
+    </label>
+    <label>Service provided
+      <input id="f_service" type="text" maxlength="200" placeholder="e.g. Cloud infrastructure (IaaS)">
+    </label>
+    <label>Data / system access description
+      <textarea id="f_access" rows="2" maxlength="500" placeholder="What data or systems can this vendor touch?"></textarea>
+    </label>
+    <label>Criticality
+      <select id="f_criticality">
+        <option>Critical</option>
+        <option selected>High</option>
+        <option>Medium</option>
+        <option>Low</option>
+      </select>
+    </label>
+    <label class="check"><input id="f_hasReport" type="checkbox"> Has SOC 2 report</label>
+    <div class="row">
+      <label>Report date <input id="f_reportDate" type="date"></label>
+      <label>Report type
+        <select id="f_reportType">
+          <option value="">Select</option>
+          <option>Type I</option>
+          <option>Type II</option>
+        </select>
+      </label>
+    </div>
+    <label class="check"><input id="f_dpa" type="checkbox"> Privacy / DPA commitments in place</label>
+    <div class="row">
+      <label>Last risk review <input id="f_lastReview" type="date"></label>
+      <label>Next review due <input id="f_nextDue" type="date"></label>
+    </div>
+    <label>Risk notes
+      <textarea id="f_notes" rows="3" maxlength="1000"></textarea>
+    </label>
+    <div class="form-actions">
+      <button id="saveBtn" class="primary">Save vendor</button>
+      <button id="cancelBtn">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<footer class="page-footer">
+  <div class="wrap">
+    <p>Built by <a href="https://github.com/nehemiah313/tsc-dataset">AI Tech Pros</a>. Readiness aid only. Not an audit, attestation, CPA opinion, or legal advice.</p>
+  </div>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
