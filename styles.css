@@ -158,3 +158,4 @@ td.actions button { padding: 5px 9px; font-size: 0.83rem; margin: 0 4px 4px 0; }
 @media (max-width: 560px) {
   .row { grid-template-columns: 1fr; }
 }
+.page-footer .storage-note { font-size: .8rem; }
